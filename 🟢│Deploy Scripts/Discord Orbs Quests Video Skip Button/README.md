@@ -55,3 +55,5 @@
 **Verdict**
 > This script is **safe to use**. It does not interact with Discord's servers or APIs in any way.
 > It simply controls the video player element directly in your browser — similar to pressing a button manually.
+
+# ✅ Get Script: [Greasy Fork](https://greasyfork.org/scripts/573852)
