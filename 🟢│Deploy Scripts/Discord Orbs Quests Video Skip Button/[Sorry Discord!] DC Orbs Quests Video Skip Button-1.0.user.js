@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         [Sorry,Discord!] DC Orbs Quests Video Skip Button
+// @name         【Sorry,Discord!】 DC Orbs Quests Video Skip Button
 // @namespace    https://github.com/NiktoBlox/Tampermonkey-Scripts/tree/60ae32ddf7b8d2e6cfdae065bf1ce5f702550180/%F0%9F%9F%A2%E2%94%82Deploy%20Scripts/Discord%20Orbs%20Quests%20Video%20Skip%20Button
 // @version      0.1
 // @description  Floating draggable skip button for Discord Orbs Quests Videos
