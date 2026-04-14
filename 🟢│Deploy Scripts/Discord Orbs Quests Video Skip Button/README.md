@@ -1,6 +1,7 @@
 # [Sorry,Discord!] DC Orbs Quests Video Skip Button
 
-![预览](https://greasyfork.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6Mjg4NzA3LCJwdXIiOiJibG9iX2lkIn19--744c8b8ec444337dbb8d0147f99f295566e790be/img-2026-04-14-11-37-51.png)
+<img width="773" height="835" alt="image_2026-04-14_11-37-48" src="https://github.com/user-attachments/assets/67379166-efbb-4ae3-af2d-4863084d8d82" />
+
 
 ## Features
 
