@@ -4,6 +4,7 @@
 // @version      0.1
 // @description  Floating draggable skip button for Discord Orbs Quests Videos
 // @author       NiktoBlox
+// @license      MIT
 // @match        https://discord.com/quest-home
 // @match        https://discord.com/quests/*
 // @match        https://discord.com/channels/*
