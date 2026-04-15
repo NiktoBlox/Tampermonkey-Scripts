@@ -405,9 +405,9 @@
 
                 <div style="font-size:12px;color:${pt().subtext};line-height:1.8;">
                     <b style="color:${pt().text};">DC Orbs Quests Video Skip Button</b><br>
-                    ${i.version}: 1.4 &nbsp;|&nbsp; ${i.author}: NiktoBlox<br>
+                    ${i.version}: v1.0 Beta &nbsp;|&nbsp; ${i.author}: NiktoBlox<br>
                     ${i.license}: MIT &nbsp;|&nbsp;
-                    <a href="https://github.com/NiktoBlox" target="_blank" style="color:${pt().accent};">${i.github}</a>
+                    <a href="https://github.com/NiktoBlox/Tampermonkey-Scripts/tree/main/%F0%9F%9F%A2%E2%94%82Deploy%20Scripts/Discord%20Orbs%20Quests%20Video%20Skip%20Button" target="_blank" style="color:${pt().accent};">${i.github}</a>
                 </div>
             </div>
         `;
@@ -492,7 +492,7 @@
         }
 
         panel.querySelector('#sq-lang').onchange = (e) => {
-            cfg.lang = e.target.value;
+            cfg。lang = e.target.value;
             save('lang', cfg.lang);
             btn.innerText = getBtnText();
             buildPanel();
