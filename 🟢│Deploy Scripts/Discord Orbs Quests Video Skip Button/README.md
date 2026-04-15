@@ -1,7 +1,6 @@
 # 【Sorry,Discord!】 DC Orbs Quests Video Skip Button
 
-<img width="773" height="835" alt="image_2026-04-14_11-37-48" src="https://github.com/user-attachments/assets/67379166-efbb-4ae3-af2d-4863084d8d82" />
-
+![image](https://github.com/user-attachments/assets/c706c9fb-40fa-4dc6-bc8a-3f34ffdb5e6a)
 
 ## Features
 
