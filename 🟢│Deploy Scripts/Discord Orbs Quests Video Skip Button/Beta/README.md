@@ -1,5 +1,12 @@
-# 🐞This script is a Beta Version.
 ### ✅[Stable Version](https://greasyfork.org/scripts/573852)
+
+> [!WARNING]
+> # 🐞This script is a Beta Version.
+
+
+> [!NOTE]
+> Right-click the skip button to open the settings options.
+
 ## ✨ Features
 
 - ⏭️ **One-click Skip** — Left-click to instantly skip Discord Orbs quest videos
@@ -17,3 +24,4 @@
 - 🔒 **99% Safe** — No API calls, no account interaction, video seek only
 
 ## Show
+![Show](https://github.com/user-attachments/assets/7817298c-73ff-4aac-9418-34a9273bc4f1)
