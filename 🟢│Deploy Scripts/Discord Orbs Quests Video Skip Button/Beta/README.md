@@ -7,7 +7,7 @@
 > [!NOTE]
 > Right-click the skip button to open the settings options.
 
-![GIF](https://files.catbox.moe/um0q2s.gif)
+![GIF](https://github.com/user-attachments/assets/97bae250-93b9-41cf-84ef-ed39534c73af)
 
 > 🔒 **99% Safe & Account Ban-Free** — A Tampermonkey userscript for skipping Discord Orbs Quest videos effortlessly.
 
