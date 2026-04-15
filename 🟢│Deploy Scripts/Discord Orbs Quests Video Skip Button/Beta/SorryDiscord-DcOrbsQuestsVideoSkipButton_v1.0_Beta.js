@@ -228,7 +228,7 @@
     // ── 主按鈕 【修復】──
     const btn = document.createElement('button');
     const getBtnText = () => cfg.customText.trim() || t().skip;
-    btn.innerText = getBtnText();
+    btn。innerText = getBtnText();
     btn.id = 'sq-skip-btn';
 
     const applyBtn = () => {
@@ -474,7 +474,7 @@
                     <div style="margin-bottom:4px;">
                         <span style="color:${pt().subtext};font-size:11px;font-weight:700;text-transform:uppercase;">${i.aboutBug}</span>
                     </div>
-                    <a href="https://greasyfork.org/scripts/573852/feedback" target="_blank" rel="noopener noreferrer" style="
+                    <a href="https://greasyfork.org/scripts/574006/feedback" target="_blank" rel="noopener noreferrer" style="
                         display:block;
                         text-align:center;
                         padding:7px 10px;
