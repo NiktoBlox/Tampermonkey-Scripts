@@ -48,6 +48,11 @@
             corners: ['↖ Top Left', '↗ Top Right', '↙ Bottom Left', '↘ Bottom Right'],
             dragDelay: '🖱️ Long-press Drag Delay', ms: 'ms',
             tabPanel: 'Panel', tabBtn: 'Button Style', tabOther: 'Other',
+            aboutSection: 'ℹ️ About',
+            aboutAuthor: '👨‍💻 Author',
+            aboutVersion: '🏷️ Version',
+            aboutBug: '🐛 Report a Bug',
+            aboutBugLink: 'Click here to report →',
         },
         'zh-TW': {
             skip: '⏭️ 跳過', skipped: '✅ 已跳過！', notFound: '❌ 找不到',
@@ -70,6 +75,11 @@
             corners: ['↖ 左上', '↗ 右上', '↙ 左下', '↘ 右下'],
             dragDelay: '🖱️ 長按拖曳延遲', ms: '毫秒',
             tabPanel: '面板外觀', tabBtn: '按鈕外觀', tabOther: '其他',
+            aboutSection: 'ℹ️ 關於',
+            aboutAuthor: '👨‍💻 製作者',
+            aboutVersion: '🏷️ 版本',
+            aboutBug: '🐛 回報 Bug',
+            aboutBugLink: '點此回報問題 →',
         },
         'zh-CN': {
             skip: '⏭️ 跳过', skipped: '✅ 已跳过！', notFound: '❌ 未找到',
@@ -92,6 +102,11 @@
             corners: ['↖ 左上', '↗ 右上', '↙ 左下', '↘ 右下'],
             dragDelay: '🖱️ 长按拖拽延迟', ms: '毫秒',
             tabPanel: '面板外观', tabBtn: '按钮外观', tabOther: '其他',
+            aboutSection: 'ℹ️ 关于',
+            aboutAuthor: '👨‍💻 制作者',
+            aboutVersion: '🏷️ 版本',
+            aboutBug: '🐛 反馈 Bug',
+            aboutBugLink: '点此反馈问题 →',
         },
         ja: {
             skip: '⏭️ スキップ', skipped: '✅ スキップ完了！', notFound: '❌ 見つかりません',
@@ -114,6 +129,11 @@
             corners: ['↖ 左上', '↗ 右上', '↙ 左下', '↘ 右下'],
             dragDelay: '🖱️ 長押しドラッグ遅延', ms: 'ms',
             tabPanel: 'パネル外観', tabBtn: 'ボタン外観', tabOther: 'その他',
+            aboutSection: 'ℹ️ このスクリプトについて',
+            aboutAuthor: '👨‍💻 作者',
+            aboutVersion: '🏷️ バージョン',
+            aboutBug: '🐛 バグを報告',
+            aboutBugLink: 'こちらから報告 →',
         },
         ko: {
             skip: '⏭️ 건너뛰기', skipped: '✅ 건너뛰기 완료！', notFound: '❌ 찾을 수 없음',
@@ -136,6 +156,11 @@
             corners: ['↖ 왼쪽 위', '↗ 오른쪽 위', '↙ 왼쪽 아래', '↘ 오른쪽 아래'],
             dragDelay: '🖱️ 길게 누르기 지연', ms: 'ms',
             tabPanel: '패널 외관', tabBtn: '버튼 스타일', tabOther: '기타',
+            aboutSection: 'ℹ️ 정보',
+            aboutAuthor: '👨‍💻 제작자',
+            aboutVersion: '🏷️ 버전',
+            aboutBug: '🐛 버그 신고',
+            aboutBugLink: '여기서 신고하기 →',
         },
     };
 
@@ -414,6 +439,57 @@
                     <button id="sq-import" style="flex:1;padding:7px;border-radius:6px;border:none;cursor:pointer;background:${pt().btnBg};color:${pt().text};font-size:12px;">${i.importSettings}</button>
                     <button id="sq-reset" style="flex:1;padding:7px;border-radius:6px;border:none;cursor:pointer;background:${pt().resetBg};color:${pt().resetText};font-size:12px;">${i.resetAll}</button>
                 </div>
+
+                <div style="border-top:1px solid ${pt().divider};margin:4px 0 14px;"></div>
+
+                <div style="display:flex;align-items:center;gap:8px;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid ${pt().accent}22;">
+                    <span style="font-size:13px;font-weight:700;color:${pt().accent};text-transform:uppercase;letter-spacing:0.5px;">${i.aboutSection}</span>
+                </div>
+
+                <div style="
+                    background:${pt().input};
+                    border-radius:10px;
+                    padding:12px 14px;
+                    margin-bottom:10px;
+                    border:1px solid ${pt().divider};
+                    font-size:13px;
+                    line-height:1.8;
+                ">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                        <span style="color:${pt().subtext};font-size:11px;font-weight:700;text-transform:uppercase;">${i.aboutAuthor}</span>
+                        <span style="font-weight:700;color:${pt().text};">NiktoBlox</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                        <span style="color:${pt().subtext};font-size:11px;font-weight:700;text-transform:uppercase;">${i.aboutVersion}</span>
+                        <span style="
+                            font-weight:700;
+                            color:${pt().accent};
+                            background:${pt().accent}18;
+                            padding:2px 8px;
+                            border-radius:20px;
+                            font-size:11px;
+                        ">v1.0-Beta</span>
+                    </div>
+                    <div style="border-top:1px solid ${pt().divider};margin:8px 0;"></div>
+                    <div style="margin-bottom:4px;">
+                        <span style="color:${pt().subtext};font-size:11px;font-weight:700;text-transform:uppercase;">${i.aboutBug}</span>
+                    </div>
+                    <a href="https://greasyfork.org/scripts/573852/feedback" target="_blank" rel="noopener noreferrer" style="
+                        display:block;
+                        text-align:center;
+                        padding:7px 10px;
+                        border-radius:6px;
+                        background:#e53935;
+                        color:#ffffff;
+                        font-size:12px;
+                        font-weight:700;
+                        text-decoration:none;
+                        transition:opacity 0.2s;
+                    " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                        ${i.aboutBugLink}
+                    </a>
+                </div>
+
             </div>
         `;
 
@@ -428,10 +504,10 @@
         };
 
         // GUI主題
-        panel.querySelectorAll('[data-guitheme]').forEach(btn => {
-            btn.onclick = (e) => {
+        panel.querySelectorAll('[data-guitheme]').forEach(guiBtn => {
+            guiBtn.onclick = (e) => {
                 e.stopPropagation();
-                cfg.guiTheme = btn.dataset.guitheme;
+                cfg.guiTheme = guiBtn.dataset.guitheme;
                 save('guiTheme', cfg.guiTheme);
                 applyPanelTheme();
                 buildPanel();
@@ -468,10 +544,10 @@
         };
 
         // 按鈕大小
-        panel.querySelectorAll('[data-size]').forEach(btn => {
-            btn.onclick = (e) => {
+        panel.querySelectorAll('[data-size]').forEach(sizeBtn => {
+            sizeBtn.onclick = (e) => {
                 e.stopPropagation();
-                cfg.btnSize = btn.dataset.size;
+                cfg.btnSize = sizeBtn.dataset.size;
                 save('btnSize', cfg.btnSize);
                 applyBtn();
                 buildPanel();
@@ -479,15 +555,15 @@
         });
 
         // 快速定位
-        panel.querySelectorAll('[data-pos]').forEach(btn => {
-            btn.onclick = (e) => {
+        panel.querySelectorAll('[data-pos]').forEach(posBtn => {
+            posBtn.onclick = (e) => {
                 e.stopPropagation();
-                const posStr = btn.dataset.pos;
-                btn.style.cssText += 'background:' + pt().accent + '!important;color:' + pt().btnActiveText + '!important;';
-                posStr.split(';').forEach(p => {
+                posBtn.dataset.pos.split(';').forEach(p => {
                     const [k, v] = p.split(':');
-                    btn.style[k] = v;
+                    if (k && v) { btn.style[k] = v; }
                 });
+                btn.style.right = 'auto';
+                btn.style.bottom = 'auto';
             };
         });
 
@@ -504,7 +580,7 @@
 
         // 透明度
         panel.querySelector('#sq-opacity').oninput = (e) => {
-            cfg.btnOpacity = e.target.value;
+            cfg。btnOpacity = e.target.value;
             panel.querySelector('#sq-opacity-val').innerText = e.target.value;
             applyBtn();
         };
@@ -577,12 +653,12 @@
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = '.json';
-            input.onchange = (e2) => {
-                const file = e2.target.files[0];
+            input.onchange = (evFile) => {
+                const file = evFile.target.files[0];
                 const reader = new FileReader();
-                reader.onload = (e3) => {
+                reader.onload = (evRead) => {
                     try {
-                        const imported = JSON.parse(e3.target.result);
+                        const imported = JSON.parse(evRead.target.result);
                         Object.keys(DEFAULTS).forEach(k => { if (k in imported) { cfg[k] = imported[k]; save(k, cfg[k]); } });
                         applyBtn(); applyPanelTheme(); buildPanel();
                         panel.style.display = 'block';
