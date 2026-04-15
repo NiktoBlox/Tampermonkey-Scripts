@@ -5,7 +5,7 @@
 // @name:ja             【すみません,Discord!】 DC Orbs クエスト動画スキップボタン
 // @name:ko             【죄송합니다,Discord!】 DC Orbs 퀘스트 동영상 건너뛰기 버튼
 // @namespace           https://github.com/NiktoBlox/Tampermonkey-Scripts/tree/60ae32ddf7b8d2e6cfdae065bf1ce5f702550180/%F0%9F%9F%A2%E2%94%82Deploy%20Scripts/Discord%20Orbs%20Quests%20Video%20Skip%20Button
-// @version             1.4
+// @version             1.4.1-HOTFIX
 // @description         🔒 99% Safe & Account Ban-Free Script — Floating draggable skip button for Discord Orbs Quests Videos
 // @description:zh-TW   🔒 99% 安全且不會封禁帳號的腳本 — 可拖曳的懸浮按鈕，用於跳過 Discord Orbs 任務影片
 // @description:zh-CN   🔒 99% 安全且不会封禁账号的脚本 — 可拖拽的悬浮按钮，用于跳过 Discord Orbs 任务视频
@@ -174,7 +174,6 @@
     const BTN_SIZES = { S: '8px 14px', M: '10px 20px', L: '14px 28px' };
     const BTN_FONT = { S: '12px', M: '14px', L: '16px' };
 
-
     // ── 面板主題定義 ──
     const PANEL_THEMES = {
         light: {
@@ -201,22 +200,33 @@
     };
     const pt = () => PANEL_THEMES[cfg.guiTheme] || PANEL_THEMES.dark;
 
-    // ── 主按鈕 ──
+    // ── 主按鈕 【修復】──
     const btn = document.createElement('button');
     const getBtnText = () => cfg.customText.trim() || t().skip;
     btn.innerText = getBtnText();
+    btn.id = 'sq-skip-btn';
 
     const applyBtn = () => {
         btn.style.cssText = `
-            position: fixed; bottom: 30px; right: 30px; z-index: 99999;
-            background: ${cfg.btnColor}; color: ${cfg.btnTextColor};
-            border: none; border-radius: ${cfg.btnRadius}px;
-            padding: ${BTN_SIZES[cfg.btnSize] || BTN_SIZES.M};
-            font-size: ${BTN_FONT[cfg.btnSize] || BTN_FONT.M};
-            font-weight: bold; cursor: grab;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3); user-select: none;
-            transition: background 0.2s, opacity 0.2s;
-            opacity: ${cfg.autoHide ? '0.2' : Number(cfg.btnOpacity) / 100};
+            position: fixed !important; 
+            bottom: 30px !important; 
+            right: 30px !important; 
+            z-index: 9999999 !important;
+            background: ${cfg.btnColor} !important; 
+            color: ${cfg.btnTextColor} !important;
+            border: none !important; 
+            border-radius: ${cfg.btnRadius}px !important;
+            padding: ${BTN_SIZES[cfg.btnSize] || BTN_SIZES.M} !important;
+            font-size: ${BTN_FONT[cfg.btnSize] || BTN_FONT.M} !important;
+            font-weight: bold !important; 
+            cursor: grab !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important; 
+            user-select: none !important;
+            transition: background 0.2s, opacity 0.2s !important;
+            opacity: ${cfg.autoHide ? '0.2' : Number(cfg.btnOpacity) / 100} !important;
+            visibility: visible !important;
+            display: block !important;
+            pointer-events: auto !important;
         `;
     };
     applyBtn();
@@ -234,7 +244,6 @@
         btn.innerText = found ? i.skipped : i.notFound;
         setTimeout(() => { btn.innerText = getBtnText(); }, Number(cfg.notifyDuration) * 1000);
     };
-
 
     // ── 自動跳過 ──
     let autoSkipTimer = null;
@@ -260,12 +269,20 @@
         const savedLeft = panel.style.left;
         const savedTop = panel.style.top;
         panel.style.cssText = `
-            display:${wasVisible ? 'block' : 'none'}; position:fixed; z-index:9999999; width:310px;
-            background:${p.panel}; color:${p.text}; border-radius:12px;
-            box-shadow:0 8px 32px rgba(0,0,0,0.6);
-            font-family:'gg sans',sans-serif; font-size:14px;
-            overflow:hidden; border:1px solid ${p.border};
-            max-height:85vh; overflow-y:auto;
+            display:${wasVisible ? 'block' : 'none'} !important; 
+            position:fixed !important; 
+            z-index:9999999 !important; 
+            width:310px !important;
+            background:${p.panel} !important; 
+            color:${p.text} !important; 
+            border-radius:12px !important;
+            box-shadow:0 8px 32px rgba(0,0,0,0.6) !important;
+            font-family:'gg sans',sans-serif !important; 
+            font-size:14px !important;
+            overflow:hidden !important; 
+            border:1px solid ${p.border} !important;
+            max-height:85vh !important; 
+            overflow-y:auto !important;
         `;
         if (savedLeft) panel.style.left = savedLeft;
         if (savedTop) panel.style.top = savedTop;
@@ -290,8 +307,6 @@
 
     const buildPanel = () => {
         const i = t();
-        const tab = cfg.activeTab || 'panel';
-
 
         panel.innerHTML = `
             <div style="background:${pt().header};padding:12px 16px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;position:sticky;top:0;z-index:1;border-bottom:1px solid ${pt().divider};">
@@ -399,145 +414,175 @@
                     <button id="sq-import" style="flex:1;padding:7px;border-radius:6px;border:none;cursor:pointer;background:${pt().btnBg};color:${pt().text};font-size:12px;">${i.importSettings}</button>
                     <button id="sq-reset" style="flex:1;padding:7px;border-radius:6px;border:none;cursor:pointer;background:${pt().resetBg};color:${pt().resetText};font-size:12px;">${i.resetAll}</button>
                 </div>
-                <input type="file" id="sq-importfile" accept=".json" style="display:none;">
-
-                <div style="border-top:1px solid ${pt().divider};margin:4px 0 14px;"></div>
-
-                <div style="font-size:12px;color:${pt().subtext};line-height:1.8;">
-                    <b style="color:${pt().text};">DC Orbs Quests Video Skip Button</b><br>
-                    ${i.version}: v1.0 Beta &nbsp;|&nbsp; ${i.author}: NiktoBlox<br>
-                    ${i.license}: MIT &nbsp;|&nbsp;
-                    <a href="https://github.com/NiktoBlox/Tampermonkey-Scripts/tree/main/%F0%9F%9F%A2%E2%94%82Deploy%20Scripts/Discord%20Orbs%20Quests%20Video%20Skip%20Button" target="_blank" style="color:${pt().accent};">${i.github}</a>
-                </div>
             </div>
         `;
 
-        // ── 通用：阻止面板內點擊冒泡到 document ──
-        panel.onclick = (e) => { e.stopPropagation(); };
+        // 關閉
+        panel.querySelector('#sq-close').onclick = () => panel.style.display = 'none';
 
-        // ── 事件綁定 ──
-        panel.querySelector('#sq-close').onclick = (e) => { e.stopPropagation(); panel.style.display = 'none'; };
+        // 語言
+        panel.querySelector('#sq-lang').onchange = (e) => {
+            cfg.lang = e.target.value;
+            save('lang', cfg.lang);
+            buildPanel();
+        };
 
-        panel.querySelectorAll('[data-guitheme]').forEach(b => {
-            b.onclick = (e) => {
+        // GUI主題
+        panel.querySelectorAll('[data-guitheme]').forEach(btn => {
+            btn.onclick = (e) => {
                 e.stopPropagation();
-                cfg.guiTheme = b.dataset.guitheme;
+                cfg.guiTheme = btn.dataset.guitheme;
                 save('guiTheme', cfg.guiTheme);
                 applyPanelTheme();
                 buildPanel();
-                panel.style.display = 'block';
             };
         });
 
-        panel.querySelectorAll('[data-theme]').forEach(dot => {
-            dot.onclick = (e) => {
+        // 主題色
+        panel.querySelectorAll('[data-theme]').forEach(div => {
+            div.onclick = (e) => {
                 e.stopPropagation();
-                cfg.theme = dot.dataset.theme;
+                cfg.theme = div.dataset.theme;
                 cfg.btnColor = THEMES[cfg.theme].bg;
                 cfg.btnTextColor = THEMES[cfg.theme].text;
-                save('theme', cfg.theme); save('btnColor', cfg.btnColor); save('btnTextColor', cfg.btnTextColor);
+                save('theme', cfg.theme);
+                save('btnColor', cfg.btnColor);
+                save('btnTextColor', cfg.btnTextColor);
                 applyBtn();
                 buildPanel();
-                panel.style.display = 'block';
             };
         });
 
-        if (panel.querySelector('#sq-btncolor')) {
-            panel.querySelector('#sq-btncolor').oninput = (e) => { cfg.btnColor = e.target.value; save('btnColor', cfg.btnColor); applyBtn(); };
-            panel.querySelector('#sq-txtcolor').oninput = (e) => { cfg.btnTextColor = e.target.value; save('btnTextColor', cfg.btnTextColor); applyBtn(); };
-        }
-
-        panel.querySelectorAll('[data-size]').forEach(b => {
-            b.onclick = (e) => {
-                e.stopPropagation();
-                cfg.btnSize = b.dataset.size;
-                save('btnSize', cfg.btnSize);
-                applyBtn(); buildPanel();
-                panel.style.display = 'block';
-            };
-        });
-
-        panel.querySelectorAll('[data-pos]').forEach(b => {
-            b.onclick = (e) => {
-                e.stopPropagation();
-                const s = b.dataset.pos;
-                btn.style.top = btn.style.bottom = btn.style.left = btn.style.right = 'auto';
-                s.split(';').forEach(p => { const [k,v] = p.split(':'); if (k) btn.style[k.trim()] = v.trim(); });
-                panel.style.display = 'none';
-            };
-        });
-
-        if (panel.querySelector('#sq-radius')) {
-            panel.querySelector('#sq-radius').oninput = (e) => {
-                cfg.btnRadius = e.target.value;
-                panel.querySelector('#sq-radius-val').innerText = cfg.btnRadius;
-                save('btnRadius', cfg.btnRadius); applyBtn();
-            };
-            panel.querySelector('#sq-opacity').oninput = (e) => {
-                cfg.btnOpacity = e.target.value;
-                panel.querySelector('#sq-opacity-val').innerText = cfg.btnOpacity;
-                save('btnOpacity', cfg.btnOpacity); applyBtn();
-            };
-            panel.querySelector('#sq-autohide').onchange = (e) => {
-                cfg.autoHide = e.target.checked;
-                save('autoHide', cfg.autoHide);
-                applyBtn(); buildPanel();
-                panel.style.display = 'block';
-            };
-            panel.querySelector('#sq-customtext').oninput = (e) => {
-                cfg.customText = e.target.value;
-                save('customText', cfg.customText);
-                btn.innerText = getBtnText();
-            };
-        }
-
-        panel.querySelector('#sq-lang').onchange = (e) => {
-            cfg。lang = e.target.value;
-            save('lang', cfg.lang);
-            btn.innerText = getBtnText();
-            buildPanel();
-            panel.style.display = 'block';
+        // 自訂顏色
+        const btnColor = panel.querySelector('#sq-btncolor');
+        const txtColor = panel.querySelector('#sq-txtcolor');
+        btnColor.onchange = (e) => {
+            cfg.btnColor = e.target.value;
+            save('btnColor', cfg.btnColor);
+            applyBtn();
+        };
+        txtColor.onchange = (e) => {
+            cfg.btnTextColor = e.target.value;
+            save('btnTextColor', cfg.btnTextColor);
+            applyBtn();
         };
 
-        if (panel.querySelector('#sq-autoskip')) {
-            panel.querySelector('#sq-autoskip').onchange = (e) => {
-                cfg.autoSkip = e.target.checked;
-                save('autoSkip', cfg.autoSkip);
-                setupAutoSkip(); buildPanel();
-                panel.style.display = 'block';
-            };
-            panel.querySelector('#sq-delay').oninput = (e) => {
-                cfg.autoSkipDelay = e.target.value;
-                panel.querySelector('#sq-delay-val').innerText = cfg.autoSkipDelay;
-                save('autoSkipDelay', cfg.autoSkipDelay);
-            };
-            panel.querySelector('#sq-notify').oninput = (e) => {
-                cfg.notifyDuration = e.target.value;
-                panel.querySelector('#sq-notify-val').innerText = cfg.notifyDuration;
-                save('notifyDuration', cfg.notifyDuration);
-            };
-            panel.querySelector('#sq-dragdelay').oninput = (e) => {
-                cfg.dragDelay = e.target.value;
-                panel.querySelector('#sq-dragdelay-val').innerText = cfg.dragDelay;
-                save('dragDelay', cfg.dragDelay);
-            };
-            panel.querySelector('#sq-export').onclick = (e) => {
+        // 按鈕大小
+        panel.querySelectorAll('[data-size]').forEach(btn => {
+            btn.onclick = (e) => {
                 e.stopPropagation();
-                const data = JSON.stringify(cfg, null, 2);
-                const a = document.createElement('a');
-                a.href = URL.createObjectURL(new Blob([data], { type: 'application/json' }));
-                a.download = 'skip-btn-settings.json'; a.click();
+                cfg.btnSize = btn.dataset.size;
+                save('btnSize', cfg.btnSize);
+                applyBtn();
+                buildPanel();
             };
-            panel.querySelector('#sq-import').onclick = (e) => {
+        });
+
+        // 快速定位
+        panel.querySelectorAll('[data-pos]').forEach(btn => {
+            btn.onclick = (e) => {
                 e.stopPropagation();
-                panel.querySelector('#sq-importfile').click();
+                const posStr = btn.dataset.pos;
+                btn.style.cssText += 'background:' + pt().accent + '!important;color:' + pt().btnActiveText + '!important;';
+                posStr.split(';').forEach(p => {
+                    const [k, v] = p.split(':');
+                    btn.style[k] = v;
+                });
             };
-            panel.querySelector('#sq-importfile').onchange = (ev) => {
-                const file = ev.target.files[0]; if (!file) return;
+        });
+
+        // 圓角
+        panel.querySelector('#sq-radius').oninput = (e) => {
+            cfg.btnRadius = e.target.value;
+            panel.querySelector('#sq-radius-val').innerText = e.target.value;
+            applyBtn();
+        };
+        panel.querySelector('#sq-radius').onchange = (e) => {
+            cfg.btnRadius = e.target.value;
+            save('btnRadius', cfg.btnRadius);
+        };
+
+        // 透明度
+        panel.querySelector('#sq-opacity').oninput = (e) => {
+            cfg.btnOpacity = e.target.value;
+            panel.querySelector('#sq-opacity-val').innerText = e.target.value;
+            applyBtn();
+        };
+        panel.querySelector('#sq-opacity').onchange = (e) => {
+            cfg.btnOpacity = e.target.value;
+            save('btnOpacity', cfg.btnOpacity);
+        };
+
+        // 自動隱藏
+        panel.querySelector('#sq-autohide').onchange = (e) => {
+            cfg.autoHide = e.target.checked;
+            save('autoHide', cfg.autoHide);
+            applyBtn();
+        };
+
+        // 自訂文字
+        panel.querySelector('#sq-customtext').onchange = (e) => {
+            cfg.customText = e.target.value;
+            save('customText', cfg.customText);
+            btn.innerText = getBtnText();
+        };
+
+        // 自動跳過
+        panel.querySelector('#sq-autoskip').onchange = (e) => {
+            cfg.autoSkip = e.target.checked;
+            save('autoSkip', cfg.autoSkip);
+            setupAutoSkip();
+        };
+
+        // 自動跳過延遲
+        panel.querySelector('#sq-delay').oninput = (e) => {
+            panel.querySelector('#sq-delay-val').innerText = e.target.value;
+        };
+        panel.querySelector('#sq-delay').onchange = (e) => {
+            cfg.autoSkipDelay = e.target.value;
+            save('autoSkipDelay', cfg.autoSkipDelay);
+        };
+
+        // 通知時間
+        panel.querySelector('#sq-notify').oninput = (e) => {
+            panel.querySelector('#sq-notify-val').innerText = e.target.value;
+        };
+        panel.querySelector('#sq-notify').onchange = (e) => {
+            cfg.notifyDuration = e.target.value;
+            save('notifyDuration', cfg.notifyDuration);
+        };
+
+        // 拖曳延遲
+        panel.querySelector('#sq-dragdelay').oninput = (e) => {
+            panel.querySelector('#sq-dragdelay-val').innerText = e.target.value;
+        };
+        panel.querySelector('#sq-dragdelay').onchange = (e) => {
+            cfg.dragDelay = e.target.value;
+            save('dragDelay', cfg.dragDelay);
+        };
+
+        // 匯出
+        panel.querySelector('#sq-export').onclick = () => {
+            const data = JSON.stringify(cfg);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `discord-orbs-skip-settings-${Date.now()}.json`;
+            a.click();
+        };
+
+        // 匯入
+        panel.querySelector('#sq-import').onclick = () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = (e2) => {
+                const file = e2.target.files[0];
                 const reader = new FileReader();
-                reader.onload = (e2) => {
+                reader.onload = (e3) => {
                     try {
-                        const imported = JSON.parse(e2.target.result);
+                        const imported = JSON.parse(e3.target.result);
                         Object.keys(DEFAULTS).forEach(k => { if (k in imported) { cfg[k] = imported[k]; save(k, cfg[k]); } });
                         applyBtn(); applyPanelTheme(); buildPanel();
                         panel.style.display = 'block';
@@ -550,15 +595,17 @@
                 };
                 reader.readAsText(file);
             };
-            panel.querySelector('#sq-reset').onclick = (e) => {
-                e.stopPropagation();
-                if (!confirm(t().resetConfirm)) return;
-                Object.keys(DEFAULTS).forEach(k => { cfg[k] = DEFAULTS[k]; save(k, DEFAULTS[k]); });
-                applyBtn(); applyPanelTheme(); buildPanel();
-                panel.style.display = 'block';
-                btn.innerText = getBtnText();
-            };
-        }
+            input.click();
+        };
+
+        // 重設
+        panel.querySelector('#sq-reset').onclick = () => {
+            if (!confirm(t().resetConfirm)) return;
+            Object.keys(DEFAULTS).forEach(k => { cfg[k] = DEFAULTS[k]; save(k, DEFAULTS[k]); });
+            applyBtn(); applyPanelTheme(); buildPanel();
+            panel.style.display = 'block';
+            btn.innerText = getBtnText();
+        };
     };
     buildPanel();
 
@@ -581,14 +628,13 @@
 
     // ── 長按拖曳模式 ──
     let isDragging = false;
-    let dragReady = false; // 長按後才啟用拖曳
+    let dragReady = false;
     let longPressTimer = null;
     let startX, startY, startLeft, startTop;
 
-    // 長按進度環
     const ring = document.createElement('div');
     ring.style.cssText = `
-        position: fixed; z-index: 999998; pointer-events: none;
+        position: fixed; z-index: 9999998; pointer-events: none;
         width: 0; height: 0; border-radius: 50%;
         border: 3px solid transparent;
         transition: none; display: none;
@@ -611,7 +657,6 @@
         ring.style.animation = 'none';
     };
 
-    // 注入動畫 CSS
     const styleEl = document.createElement('style');
     styleEl.textContent = `
         @keyframes sq-ring-spin {
@@ -634,12 +679,10 @@
         startX = e.clientX; startY = e.clientY;
         startLeft = rect.left; startTop = rect.top;
 
-        // 顯示長按進度環
         showRing(e.clientX, e.clientY);
         btn.style.transition = 'transform 0.1s';
         btn.style.transform = 'scale(0.92)';
 
-        // 1 秒後進入拖曳模式（依設定）
         longPressTimer = setTimeout(() => {
             dragReady = true;
             hideRing();
@@ -708,4 +751,10 @@
 
     document.body.appendChild(btn);
     document.body.appendChild(panel);
+    
+    // 【修復】最後確認一次按鈕可見
+    setTimeout(() => {
+        btn.style.cssText += 'z-index: 9999999 !important; visibility: visible !important; display: block !important;';
+        console.log('✅ Skip Button Initialized Successfully!');
+    }, 500);
 })();
