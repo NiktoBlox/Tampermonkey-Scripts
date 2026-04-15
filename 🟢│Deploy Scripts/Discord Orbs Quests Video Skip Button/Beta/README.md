@@ -7,21 +7,82 @@
 > [!NOTE]
 > Right-click the skip button to open the settings options.
 
+> 🔒 **99% Safe & Account Ban-Free** — A Tampermonkey userscript for skipping Discord Orbs Quest videos effortlessly.
+
+---
+![Show](https://github.com/user-attachments/assets/7817298c-73ff-4aac-9418-34a9273bc4f1)
+
 ## ✨ Features
 
-- ⏭️ **One-click Skip** — Left-click to instantly skip Discord Orbs quest videos
-- ⚙️ **Settings GUI** — Right-click to open a full settings panel
-- 🖱️ **Long-press Drag** — Hold to enter drag mode with progress ring animation (adjustable delay 0–1000ms)
-- 🌐 **Multi-language** — Auto-detects browser language (English / 繁體中文 / 简体中文 / 日本語 / 한국어)
-- 🖥️ **Panel Themes** — Light / Dark / Pure Black with full color token system
-- 🎨 **Button Appearance** — 6 preset themes, custom button & text color, size (S/M/L), border radius, opacity, auto-hide
-- 📌 **Quick Position** — One-click snap to any corner
-- ✏️ **Custom Button Text** — Set your own label
-- 🤖 **Auto Skip** — Automatically skips videos when detected (adjustable delay)
-- 🔔 **Notify Duration** — Control how long the skip feedback message displays
-- 📤 **Export / Import** — Backup and restore all settings as JSON
-- 🔄 **Reset** — Restore all settings to default with one click
-- 🔒 **99% Safe** — No API calls, no account interaction, video seek only
+### ⏭️ One-Click Skip
+Instantly skip Discord Orbs Quest videos with a single click on the floating button.
 
-## Show
-![Show](https://github.com/user-attachments/assets/7817298c-73ff-4aac-9418-34a9273bc4f1)
+### 🤖 Auto Skip
+Automatically detects and skips quest videos without any manual interaction.
+- Configurable delay before auto-skip triggers *(default: 3s)*
+
+### 🖱️ Draggable Floating Button
+- Long-press to enter drag mode
+- Freely reposition the button anywhere on screen
+- Configurable long-press drag delay *(default: 200ms)*
+- Visual ring animation confirms drag activation
+
+### 📌 Quick Position Presets
+Snap the button to any corner instantly:
+`↖ Top Left` · `↗ Top Right` · `↙ Bottom Left` · `↘ Bottom Right`
+
+### 🎨 Full Visual Customization
+| Option | Details |
+|---|---|
+| **Theme** | Discord, Dark, Light, Green, Red, Purple |
+| **Custom Color** | Pick any button & text color |
+| **Button Size** | S / M / L |
+| **Border Radius** | Adjustable slider (0–50px) |
+| **Opacity** | Adjustable slider (0–100%) |
+| **Auto-hide** | Fades button when inactive |
+| **Custom Button Text** | Personalize the label |
+
+### 🖥️ Settings Panel Themes
+`Light` · `Dark` · `Pure Black`
+
+### 🔔 Notification Control
+Customize how long skip notifications are displayed *(default: 2s)*
+
+### 📤 Export / 📥 Import Settings
+Back up and restore your configuration at any time.
+
+### 🔄 Reset All Settings
+One-click restore to factory defaults.
+
+### 🌐 Multi-Language Support
+| Language | Code |
+|---|---|
+| English | `en` |
+| 繁體中文 | `zh-TW` |
+| 简体中文 | `zh-CN` |
+| 日本語 | `ja` |
+| 한국어 | `ko` |
+
+> Auto-detects browser language on first run.
+
+---
+
+## ⚙️ Settings Panel Overview
+
+**Panel Tab** — Language, GUI theme
+
+**Button Style Tab** — Theme presets, custom colors, size, position, radius, opacity, auto-hide, custom text
+
+**Other Tab** — Auto skip, skip delay, notify duration, drag delay, export/import/reset
+
+---
+
+## 📋 Script Info
+
+| Field | Value |
+|---|---|
+| **Version** | 1.0 Beta |
+| **Author** | NiktoBlox |
+| **License** | MIT |
+| **Platform** | Tampermonkey |
+| **Matches** | `discord.com/quest-home` · `discord.com/quests/*` · `discord.com/channels/*` |
