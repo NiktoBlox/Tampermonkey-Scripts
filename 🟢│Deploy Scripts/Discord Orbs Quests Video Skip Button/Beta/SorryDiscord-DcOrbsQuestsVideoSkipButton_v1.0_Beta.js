@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name                【Sorry,Discord!】 DC Orbs Quests Video Skip Button
-// @name:zh-TW          【對不起,Discord!】 DC Orbs 任務影片跳過按鈕
-// @name:zh-CN          【对不起,Discord!】 DC Orbs 任务视频跳过按钮
-// @name:ja             【すみません,Discord!】 DC Orbs クエスト動画スキップボタン
-// @name:ko             【죄송합니다,Discord!】 DC Orbs 퀘스트 동영상 건너뛰기 버튼
+// @name                【Sorry,Discord!】 DC Orbs Quests Video Skip Button (Beta)
+// @name:zh-TW          【對不起,Discord!】 DC Orbs 任務影片跳過按鈕 (Beta)
+// @name:zh-CN          【对不起,Discord!】 DC Orbs 任务视频跳过按钮 (Beta)
+// @name:ja             【すみません,Discord!】 DC Orbs クエスト動画スキップボタン (Beta)
+// @name:ko             【죄송합니다,Discord!】 DC Orbs 퀘스트 동영상 건너뛰기 버튼 (Beta)
 // @namespace           https://github.com/NiktoBlox/Tampermonkey-Scripts/tree/60ae32ddf7b8d2e6cfdae065bf1ce5f702550180/%F0%9F%9F%A2%E2%94%82Deploy%20Scripts/Discord%20Orbs%20Quests%20Video%20Skip%20Button
-// @version             1.0-Beta
+// @version             1.5-Beta
 // @description         🔒 99% Safe & Account Ban-Free Script — Floating draggable skip button for Discord Orbs Quests Videos
 // @description:zh-TW   🔒 99% 安全且不會封禁帳號的腳本 — 可拖曳的懸浮按鈕，用於跳過 Discord Orbs 任務影片
 // @description:zh-CN   🔒 99% 安全且不会封禁账号的脚本 — 可拖拽的悬浮按钮，用于跳过 Discord Orbs 任务视频
@@ -228,7 +228,7 @@
     // ── 主按鈕 【修復】──
     const btn = document.createElement('button');
     const getBtnText = () => cfg.customText.trim() || t().skip;
-    btn。innerText = getBtnText();
+    btn.innerText = getBtnText();
     btn.id = 'sq-skip-btn';
 
     const applyBtn = () => {
@@ -325,10 +325,18 @@
             <div><div style="font-weight:600;">${label}</div>${desc ? `<div style="font-size:11px;color:${pt().subtext};">${desc}</div>` : ''}</div>
             <label style="position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;">
                 <input type="checkbox" id="${id}" ${checked ? 'checked' : ''} style="opacity:0;width:0;height:0;">
-                <span style="position:absolute;top:0;left:0;right:0;bottom:0;background:${checked ? '#5865F2' : '#4e5058'};border-radius:24px;cursor:pointer;transition:0.2s;"></span>
-                <span style="position:absolute;height:18px;width:18px;left:${checked ? '23px' : '3px'};bottom:3px;background:white;border-radius:50%;transition:0.2s;pointer-events:none;"></span>
+                <span id="${id}-track" style="position:absolute;top:0;left:0;right:0;bottom:0;background:${checked ? '#5865F2' : '#4e5058'};border-radius:24px;cursor:pointer;transition:background 0.2s;"></span>
+                <span id="${id}-thumb" style="position:absolute;height:18px;width:18px;left:${checked ? '23px' : '3px'};bottom:3px;background:white;border-radius:50%;transition:left 0.2s;pointer-events:none;"></span>
             </label>
         </div>`;
+
+    // 即時更新 toggle 視覺狀態（不重建整個面板）
+    const updateToggleUI = (id, isChecked) => {
+        const track = panel.querySelector(`#${id}-track`);
+        const thumb = panel.querySelector(`#${id}-thumb`);
+        if (track) track.style.background = isChecked ? '#5865F2' : '#4e5058';
+        if (thumb) thumb.style.left = isChecked ? '23px' : '3px';
+    };
 
     const buildPanel = () => {
         const i = t();
@@ -580,7 +588,7 @@
 
         // 透明度
         panel.querySelector('#sq-opacity').oninput = (e) => {
-            cfg。btnOpacity = e.target.value;
+            cfg.btnOpacity = e.target.value;
             panel.querySelector('#sq-opacity-val').innerText = e.target.value;
             applyBtn();
         };
@@ -593,6 +601,7 @@
         panel.querySelector('#sq-autohide').onchange = (e) => {
             cfg.autoHide = e.target.checked;
             save('autoHide', cfg.autoHide);
+            updateToggleUI('sq-autohide', cfg.autoHide);
             applyBtn();
         };
 
@@ -607,6 +616,7 @@
         panel.querySelector('#sq-autoskip').onchange = (e) => {
             cfg.autoSkip = e.target.checked;
             save('autoSkip', cfg.autoSkip);
+            updateToggleUI('sq-autoskip', cfg.autoSkip);
             setupAutoSkip();
         };
 
@@ -661,7 +671,7 @@
                         const imported = JSON.parse(evRead.target.result);
                         Object.keys(DEFAULTS).forEach(k => { if (k in imported) { cfg[k] = imported[k]; save(k, cfg[k]); } });
                         applyBtn(); applyPanelTheme(); buildPanel();
-                        panel。style.display = 'block';
+                        panel.style.display = 'block';
                         btn.innerText = t().importSuccess;
                         setTimeout(() => { btn.innerText = getBtnText(); }, 2000);
                     } catch {
