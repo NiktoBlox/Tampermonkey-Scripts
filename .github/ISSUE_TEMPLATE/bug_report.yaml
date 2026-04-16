@@ -1,11 +1,11 @@
-name: 🌐 Request a New Interface Language
+name: 🐛 Bug Report
 
-description: Request support for a new language to be added to the script's interface.
+description: Report a bug or unexpected behavior in the script.
 
-title: "[Lang Request] "
+title: "[Bug] "
 
 labels:
-  - "🌐 language-request"
+  - "🐛 bug"
 
 assignees:
   - NiktoBlox
@@ -14,14 +14,14 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 🌐 Interface Language Request
-        Thank you for helping us make this script more accessible!
-        Please fill out the form below to request a new language.
+        ## 🐛 Bug Report
+        Thank you for taking the time to report a bug!
+        Please fill out the form below as thoroughly as possible so we can investigate and fix the issue quickly.
 
   - type: dropdown
-    id: script-version
+    id: script-version-type
     attributes:
-      label: "📦 Which script are you requesting this for?"
+      label: "📦 Which script are you reporting this for?"
       description: "Select the version of the script you are using."
       options:
         - "【Sorry,Discord!】 DC Orbs Quests Video Skip Button"
@@ -30,44 +30,52 @@ body:
       required: true
 
   - type: input
-    id: language-name
+    id: script-version-number
     attributes:
-      label: "🗣️ What language would you like added?"
-      description: "Please enter your local language name, not English. (e.g. 中文 / 한국어 / العربية)"
-      placeholder: "e.g. 中文 / 한국어 / العربية / Español / Français..."
+      label: "🏷️ Version"
+      description: "What version of the script are you running? You can find this in the Tampermonkey dashboard."
+      placeholder: "e.g. 1.0 / 1.0 Beta"
     validations:
       required: true
 
-  - type: input
-    id: language-code
-    attributes:
-      label: "🏷️ Language Code (optional)"
-      description: "If you know your language's BCP 47 code, please enter it. (e.g. zh-TW / ko / ar)"
-      placeholder: "e.g. zh-TW / ko / ar / es / fr"
-    validations:
-      required: false
-
   - type: textarea
-    id: translation-help
+    id: bug-description
     attributes:
-      label: "✍️ Can you help with the translation? (optional)"
-      description: "If you are willing to provide translations for the UI strings, please share them here or let us know. Any help is appreciated!"
+      label: "📝 Bug Description"
+      description: |
+        Please describe the bug in detail.
+        - What happened?
+        - What did you expect to happen?
+        - What steps can reproduce this issue?
+        You may paste screenshots or screen recordings directly into this field.
       placeholder: |
-        e.g.
-        skip: '⏭️ ...'
-        skipped: '✅ ...!'
-        notFound: '❌ ...'
-        settings: '⚙️ ...'
-        ...
+        **What happened:**
+        e.g. Clicking the skip button does nothing when the quest video starts.
+
+        **Expected behavior:**
+        e.g. The video should be skipped immediately after clicking.
+
+        **Steps to reproduce:**
+        1. Go to discord.com/quest-home
+        2. Start a quest video
+        3. Click the floating skip button
+        4. Nothing happens
+
+        **Environment:**
+        - Browser: e.g. Chrome 124 / Firefox 125
+        - OS: e.g. Windows 11 / macOS 14
+        - Tampermonkey version: e.g. 5.1.0
     validations:
-      required: false
+      required: true
 
   - type: textarea
-    id: additional-notes
+    id: screenshots
     attributes:
-      label: "📝 Additional Notes (optional)"
-      description: "Any other information you'd like to share, such as regional differences or special characters."
-      placeholder: "e.g. Traditional vs Simplified Chinese, RTL layout needed for Arabic, etc."
+      label: "🖼️ Screenshots / Screen Recording (optional)"
+      description: |
+        If applicable, upload screenshots or a screen recording to help explain the problem.
+        You can drag and drop image files directly into this field.
+      placeholder: "Drag & drop images here, or paste a screenshot (Ctrl+V / Cmd+V)..."
     validations:
       required: false
 
@@ -76,7 +84,9 @@ body:
     attributes:
       label: "✅ Checklist"
       options:
-        - label: "I have searched existing issues and this language has not been requested before."
+        - label: "I have searched existing issues and this bug has not been reported before."
           required: true
-        - label: "I understand this is a volunteer project and response times may vary."
+        - label: "I have confirmed this issue occurs with the latest version of the script."
           required: true
+        - label: "I have disabled other userscripts to confirm this is not a conflict issue."
+          required: false
