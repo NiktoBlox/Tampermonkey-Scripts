@@ -1,52 +1,94 @@
-name: 🐛Bug
-description: If you encounter any errors or malfunctions, submit a report here.
-title: "[Bug]: "
-labels: ["Bug"]
-assignees: []
+```yaml
+name: 🐛 Bug Report
+
+description: Report a bug or unexpected behavior in the script.
+
+title: "[Bug] "
+
+labels:
+  - "🐛 bug"
+
+assignees:
+  - NiktoBlox
+
 body:
   - type: markdown
     attributes:
-      value: "### Enter your desired bug theme upstairs. Example: [Bug]: Buttons are missing. "
-    
+      value: |
+        ## 🐛 Bug Report
+        Thank you for taking the time to report a bug!
+        Please fill out the form below as thoroughly as possible so we can investigate and fix the issue quickly.
+
   - type: dropdown
-    id: location
+    id: script-version-type
     attributes:
-      label: Select script
-      description: Please select the script that is causing the problem.
+      label: "📦 Which script are you reporting this for?"
+      description: "Select the version of the script you are using."
       options:
-        - 【Sorry,Discord!】 DC Orbs Quests Video Skip Button
+        - "【Sorry,Discord!】 DC Orbs Quests Video Skip Button"
+        - "【Sorry,Discord!】 DC Orbs Quests Video Skip Button (Beta)"
     validations:
       required: true
-      
+
   - type: input
-    id: version
+    id: script-version-number
     attributes:
-      label: Version
-      placeholder: example：1.2
+      label: "🏷️ Version"
+      description: "What version of the script are you running? You can find this in the Tampermonkey dashboard."
+      placeholder: "e.g. 1.0 / 1.0 Beta"
     validations:
       required: true
-      
+
   - type: textarea
-    id: description
+    id: bug-description
     attributes:
-      label: Detailed explanation (images can also be uploaded here).
-      placeholder: Describe the bug you encountered.
+      label: "📝 Bug Description"
+      description: |
+        Please describe the bug in detail.
+        - What happened?
+        - What did you expect to happen?
+        - What steps can reproduce this issue?
+        You may paste screenshots or screen recordings directly into this field.
+      placeholder: |
+        **What happened:**
+        e.g. Clicking the skip button does nothing when the quest video starts.
+
+        **Expected behavior:**
+        e.g. The video should be skipped immediately after clicking.
+
+        **Steps to reproduce:**
+        1. Go to discord.com/quest-home
+        2. Start a quest video
+        3. Click the floating skip button
+        4. Nothing happens
+
+        **Environment:**
+        - Browser: e.g. Chrome 124 / Firefox 125
+        - OS: e.g. Windows 11 / macOS 14
+        - Tampermonkey version: e.g. 5.1.0
     validations:
       required: true
-      
-  - type: markdown
-    attributes:
-      value: "## Upload image (optional)"
-      
-  - type: markdown
-    attributes:
-      value: "You can drag and drop your image directly into the text box below to upload."
-      
+
   - type: textarea
     id: screenshots
     attributes:
-      label: Upload image
-      description: If applicable, please add screenshots to help explain your question.
-      placeholder: Drag and drop the image here...
+      label: "🖼️ Screenshots / Screen Recording (optional)"
+      description: |
+        If applicable, upload screenshots or a screen recording to help explain the problem.
+        You can drag and drop image files directly into this field.
+      placeholder: "Drag & drop images here, or paste a screenshot (Ctrl+V / Cmd+V)..."
     validations:
       required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "✅ Checklist"
+      options:
+        - label: "I have searched existing issues and this bug has not been reported before."
+          required: true
+        - label: "I have confirmed this issue occurs with the latest version of the script."
+          required: true
+        - label: "I have disabled other userscripts to confirm this is not a conflict issue."
+          required: false
+```
