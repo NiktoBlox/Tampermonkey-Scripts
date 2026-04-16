@@ -1,0 +1,82 @@
+name: 🌐 Request a New Interface Language
+
+description: Request support for a new language to be added to the script's interface.
+
+title: "[Lang Request] "
+
+labels:
+  - "🌐 language-request"
+
+assignees:
+  - NiktoBlox
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🌐 Interface Language Request
+        Thank you for helping us make this script more accessible!
+        Please fill out the form below to request a new language.
+
+  - type: dropdown
+    id: script-version
+    attributes:
+      label: "📦 Which script are you requesting this for?"
+      description: "Select the version of the script you are using."
+      options:
+        - "【Sorry,Discord!】 DC Orbs Quests Video Skip Button"
+        - "【Sorry,Discord!】 DC Orbs Quests Video Skip Button (Beta)"
+    validations:
+      required: true
+
+  - type: input
+    id: language-name
+    attributes:
+      label: "🗣️ What language would you like added?"
+      description: "Please enter your local language name, not English. (e.g. 中文 / 한국어 / العربية)"
+      placeholder: "e.g. 中文 / 한국어 / العربية / Español / Français..."
+    validations:
+      required: true
+
+  - type: input
+    id: language-code
+    attributes:
+      label: "🏷️ Language Code (optional)"
+      description: "If you know your language's BCP 47 code, please enter it. (e.g. zh-TW / ko / ar)"
+      placeholder: "e.g. zh-TW / ko / ar / es / fr"
+    validations:
+      required: false
+
+  - type: textarea
+    id: translation-help
+    attributes:
+      label: "✍️ Can you help with the translation? (optional)"
+      description: "If you are willing to provide translations for the UI strings, please share them here or let us know. Any help is appreciated!"
+      placeholder: |
+        e.g.
+        skip: '⏭️ ...'
+        skipped: '✅ ...!'
+        notFound: '❌ ...'
+        settings: '⚙️ ...'
+        ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: "📝 Additional Notes (optional)"
+      description: "Any other information you'd like to share, such as regional differences or special characters."
+      placeholder: "e.g. Traditional vs Simplified Chinese, RTL layout needed for Arabic, etc."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "✅ Checklist"
+      options:
+        - label: "I have searched existing issues and this language has not been requested before."
+          required: true
+        - label: "I understand this is a volunteer project and response times may vary."
+          required: true
