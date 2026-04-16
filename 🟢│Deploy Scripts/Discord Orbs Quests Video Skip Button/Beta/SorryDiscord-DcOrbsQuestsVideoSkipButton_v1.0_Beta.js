@@ -474,7 +474,7 @@
                     <div style="margin-bottom:4px;">
                         <span style="color:${pt().subtext};font-size:11px;font-weight:700;text-transform:uppercase;">${i.aboutBug}</span>
                     </div>
-                    <a href="https://greasyfork.org/scripts/574006/feedback" target="_blank" rel="noopener noreferrer" style="
+                    <a href="https://github.com/NiktoBlox/Tampermonkey-Scripts/issues" target="_blank" rel="noopener noreferrer" style="
                         display:block;
                         text-align:center;
                         padding:7px 10px;
@@ -661,7 +661,7 @@
                         const imported = JSON.parse(evRead.target.result);
                         Object.keys(DEFAULTS).forEach(k => { if (k in imported) { cfg[k] = imported[k]; save(k, cfg[k]); } });
                         applyBtn(); applyPanelTheme(); buildPanel();
-                        panel.style.display = 'block';
+                        panel。style.display = 'block';
                         btn.innerText = t().importSuccess;
                         setTimeout(() => { btn.innerText = getBtnText(); }, 2000);
                     } catch {
