@@ -5,7 +5,7 @@
 // @name:ja             【すみません,Discord!】 DC Orbs クエスト動画スキップボタン (Beta)
 // @name:ko             【죄송합니다,Discord!】 DC Orbs 퀘스트 동영상 건너뛰기 버튼 (Beta)
 // @namespace           https://github.com/NiktoBlox/Tampermonkey-Scripts/tree/60ae32ddf7b8d2e6cfdae065bf1ce5f702550180/%F0%9F%9F%A2%E2%94%82Deploy%20Scripts/Discord%20Orbs%20Quests%20Video%20Skip%20Button
-// @version             1.5-Beta
+// @version             1.51-Beta
 // @description         🔒 99% Safe & Account Ban-Free Script — Floating draggable skip button for Discord Orbs Quests Videos
 // @description:zh-TW   🔒 99% 安全且不會封禁帳號的腳本 — 可拖曳的懸浮按鈕，用於跳過 Discord Orbs 任務影片
 // @description:zh-CN   🔒 99% 安全且不会封禁账号的脚本 — 可拖拽的悬浮按钮，用于跳过 Discord Orbs 任务视频
@@ -53,6 +53,8 @@
             aboutVersion: '🏷️ Version',
             aboutBug: '🐛 Report a Bug',
             aboutBugLink: 'Click here to report →',
+            aboutLang: '🌐 Add a Language',
+            aboutLangLink: 'Request a new language →',
         },
         'zh-TW': {
             skip: '⏭️ 跳過', skipped: '✅ 已跳過！', notFound: '❌ 找不到',
@@ -80,6 +82,8 @@
             aboutVersion: '🏷️ 版本',
             aboutBug: '🐛 回報 Bug',
             aboutBugLink: '點此回報問題 →',
+            aboutLang: '🌐 新增語言',
+            aboutLangLink: '申請新增語言 →',
         },
         'zh-CN': {
             skip: '⏭️ 跳过', skipped: '✅ 已跳过！', notFound: '❌ 未找到',
@@ -107,6 +111,8 @@
             aboutVersion: '🏷️ 版本',
             aboutBug: '🐛 反馈 Bug',
             aboutBugLink: '点此反馈问题 →',
+            aboutLang: '🌐 新增语言',
+            aboutLangLink: '申请新增语言 →',
         },
         ja: {
             skip: '⏭️ スキップ', skipped: '✅ スキップ完了！', notFound: '❌ 見つかりません',
@@ -134,6 +140,8 @@
             aboutVersion: '🏷️ バージョン',
             aboutBug: '🐛 バグを報告',
             aboutBugLink: 'こちらから報告 →',
+            aboutLang: '🌐 言語を追加',
+            aboutLangLink: '新しい言語をリクエスト →',
         },
         ko: {
             skip: '⏭️ 건너뛰기', skipped: '✅ 건너뛰기 완료！', notFound: '❌ 찾을 수 없음',
@@ -161,6 +169,8 @@
             aboutVersion: '🏷️ 버전',
             aboutBug: '🐛 버그 신고',
             aboutBugLink: '여기서 신고하기 →',
+            aboutLang: '🌐 언어 추가',
+            aboutLangLink: '새 언어 요청하기 →',
         },
     };
 
@@ -325,18 +335,10 @@
             <div><div style="font-weight:600;">${label}</div>${desc ? `<div style="font-size:11px;color:${pt().subtext};">${desc}</div>` : ''}</div>
             <label style="position:relative;display:inline-block;width:44px;height:24px;flex-shrink:0;">
                 <input type="checkbox" id="${id}" ${checked ? 'checked' : ''} style="opacity:0;width:0;height:0;">
-                <span id="${id}-track" style="position:absolute;top:0;left:0;right:0;bottom:0;background:${checked ? '#5865F2' : '#4e5058'};border-radius:24px;cursor:pointer;transition:background 0.2s;"></span>
-                <span id="${id}-thumb" style="position:absolute;height:18px;width:18px;left:${checked ? '23px' : '3px'};bottom:3px;background:white;border-radius:50%;transition:left 0.2s;pointer-events:none;"></span>
+                <span style="position:absolute;top:0;left:0;right:0;bottom:0;background:${checked ? '#5865F2' : '#4e5058'};border-radius:24px;cursor:pointer;transition:0.2s;"></span>
+                <span style="position:absolute;height:18px;width:18px;left:${checked ? '23px' : '3px'};bottom:3px;background:white;border-radius:50%;transition:0.2s;pointer-events:none;"></span>
             </label>
         </div>`;
-
-    // 即時更新 toggle 視覺狀態（不重建整個面板）
-    const updateToggleUI = (id, isChecked) => {
-        const track = panel.querySelector(`#${id}-track`);
-        const thumb = panel.querySelector(`#${id}-thumb`);
-        if (track) track.style.background = isChecked ? '#5865F2' : '#4e5058';
-        if (thumb) thumb.style.left = isChecked ? '23px' : '3px';
-    };
 
     const buildPanel = () => {
         const i = t();
@@ -493,8 +495,26 @@
                         font-weight:700;
                         text-decoration:none;
                         transition:opacity 0.2s;
+                        margin-bottom:8px;
                     " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
                         ${i.aboutBugLink}
+                    </a>
+                    <div style="margin-bottom:4px;">
+                        <span style="color:${pt().subtext};font-size:11px;font-weight:700;text-transform:uppercase;">${i.aboutLang}</span>
+                    </div>
+                    <a href="https://github.com/NiktoBlox/Tampermonkey-Scripts/issues" target="_blank" rel="noopener noreferrer" style="
+                        display:block;
+                        text-align:center;
+                        padding:7px 10px;
+                        border-radius:6px;
+                        background:#5865F2;
+                        color:#ffffff;
+                        font-size:12px;
+                        font-weight:700;
+                        text-decoration:none;
+                        transition:opacity 0.2s;
+                    " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                        ${i.aboutLangLink}
                     </a>
                 </div>
 
@@ -509,6 +529,10 @@
             cfg.lang = e.target.value;
             save('lang', cfg.lang);
             buildPanel();
+            // 同步更新主按鈕文字跟隨語言
+            if (!cfg.customText.trim()) {
+                btn.innerText = getBtnText();
+            }
         };
 
         // GUI主題
@@ -601,7 +625,6 @@
         panel.querySelector('#sq-autohide').onchange = (e) => {
             cfg.autoHide = e.target.checked;
             save('autoHide', cfg.autoHide);
-            updateToggleUI('sq-autohide', cfg.autoHide);
             applyBtn();
         };
 
@@ -616,7 +639,6 @@
         panel.querySelector('#sq-autoskip').onchange = (e) => {
             cfg.autoSkip = e.target.checked;
             save('autoSkip', cfg.autoSkip);
-            updateToggleUI('sq-autoskip', cfg.autoSkip);
             setupAutoSkip();
         };
 
