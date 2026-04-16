@@ -1,0 +1,52 @@
+name: 🐛Bug
+description: If you encounter any errors or malfunctions, submit a report here.
+title: "[Bug]: "
+labels: ["Bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: "### Enter your desired bug theme upstairs. Example: [Bug]: Buttons are missing. "
+    
+  - type: dropdown
+    id: location
+    attributes:
+      label: Select script
+      description: Please select the script that is causing the problem.
+      options:
+        - 【Sorry,Discord!】 DC Orbs Quests Video Skip Button
+    validations:
+      required: true
+      
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: example：1.2
+    validations:
+      required: true
+      
+  - type: textarea
+    id: description
+    attributes:
+      label: Detailed explanation (images can also be uploaded here).
+      placeholder: Describe the bug you encountered.
+    validations:
+      required: true
+      
+  - type: markdown
+    attributes:
+      value: "## Upload image (optional)"
+      
+  - type: markdown
+    attributes:
+      value: "You can drag and drop your image directly into the text box below to upload."
+      
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Upload image
+      description: If applicable, please add screenshots to help explain your question.
+      placeholder: Drag and drop the image here...
+    validations:
+      required: false
